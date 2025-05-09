@@ -1,0 +1,52 @@
+@use '../setup/vars' as *;
+@use '../functions/get-contrast' as *;
+@use 'flexbox' as *;
+@use 'shapes' as *;
+
+@mixin btn($duration: $default-transition) {
+    cursor: pointer;
+    transition: all $duration;
+}
+
+@mixin retangular-btn($w: fit-content, $h: fit-content, $bg: transparent, $bg-hov: transparent, $b-radius: 0, $border: none, $spe-color: none) {
+    border-radius: $b-radius;
+
+    @include btn;
+    @include rectangle($w, $h, $bg, $border);
+
+    &:hover {
+        background-color: $bg-hov;
+    }
+
+    @if $spe-color == none {
+        & {
+            color: get-contrast($bg);
+        }
+
+        &:hover {
+            color: get-contrast($bg-hov);
+        }
+    } @else {
+        & {
+            color: $spe-color;
+        }
+
+        &:hover {
+            color: $spe-color;
+        }
+    }
+}
+
+@mixin circle-btn($size: $default-btn-size, $bg: transparent, $bg-hov: transparent, $spe-color: none) {
+    aspect-ratio: 1;
+    
+    @include flex-center;
+    @include retangular-btn($size, $size, $bg, $bg-hov, 50%, none, $spe-color);
+}
+
+@mixin icon-btn($context-color: $primary-color) {
+    color: rgba(get-contrast($context-color), .4);
+    @include btn(.3s);
+
+    &:hover { color: get-contrast($context-color) }
+}

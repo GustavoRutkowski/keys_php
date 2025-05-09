@@ -1,0 +1,11 @@
+@use '../setup/vars' as *;
+
+*::-webkit-scrollbar {
+    width: $scrollbar-width;
+    background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    width: $scrollbar-width;
+    background-color: $lines-color;
+}

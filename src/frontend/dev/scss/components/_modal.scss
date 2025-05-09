@@ -1,0 +1,26 @@
+@use '../setup/all' as *;
+
+dialog#password-modal {
+    &[open] {
+        top: $large-padding;
+        border: none;
+        @include form-box($min-w: 40%, $max-w: 95%);
+    }
+
+    &::backdrop {
+        background-color: $black-opacity-4;
+        backdrop-filter: blur(1.5px);
+    }
+
+    button.password-modal__close-modal-btn {
+        position: absolute;
+        top: $normal-padding;
+        right: $normal-padding;
+
+        @include circle-btn(
+            $size: $close-btn-size,
+            $bg-hov: $white-opacity-2,
+            $spe-color: $cancel-color
+        );
+    }
+}

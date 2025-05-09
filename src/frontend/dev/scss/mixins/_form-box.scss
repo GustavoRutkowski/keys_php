@@ -1,0 +1,64 @@
+@use '../setup/vars' as *;
+@use 'buttons' as *;
+@use 'default-box' as *;
+@use 'flexbox' as *;
+@use 'form-field' as *;
+
+@mixin form-box($min-w: 40%, $max-w: 95%) {
+    margin: $large-padding auto;
+    font-size: $default-font-size;
+    
+    @include default-box($min-w, $max-w);
+    @include flex-column($align: center, $gap: $normal-padding);   
+
+    h2 {
+        font-size: $subtitles-font-size;
+    }
+
+    & > *:not(h2) + * {
+        margin-top: $mid-padding;
+    }
+
+    form[class *= '__form'] {
+        width: 100%;
+        @include flex-column($gap: $large-padding);
+
+        fieldset.form__form-field {
+            @include form-field;
+        }
+    }
+
+    button[class *= '__submit-btn'] {
+        padding: $normal-padding;
+        box-shadow: $default-shadow;
+
+        @include retangular-btn(
+            $w: 50%,
+            $bg: $secondary-color,
+            $bg-hov: $secondary-color-darken,
+            $b-radius: $large-radius,
+            $spe-color: #fff
+        );
+    }
+
+    p {
+        font-size: $default-font-size;
+
+        a {
+            color: $secondary-color-darken;
+            text-decoration: underline;
+        }
+    }
+
+    @media only screen and (max-width: $breakpoint-xlarge) {
+        min-width: 60%;
+    }
+
+    @media only screen and (max-width: $breakpoint-medium) {
+        min-width: 80;
+    }
+
+    @media only screen and (max-width: $breakpoint-small) {
+        min-width: 90%;
+    }
+}

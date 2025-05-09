@@ -1,0 +1,6 @@
+@use '../functions/all' as *;
+
+@mixin auto-contrast($bg: transparent) {
+    background-color: $bg;
+    color: get-contrast($bg);
+}

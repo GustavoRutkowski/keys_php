@@ -1,0 +1,5 @@
+src/frontend/public/js
+src/frontend/public/css
+node_modules/*
+src/.env
+package-lock.json

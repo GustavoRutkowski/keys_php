@@ -1,0 +1,21 @@
+@mixin shape($bg: transparent, $border: none) {
+    background-color: $bg;
+    border: $border;
+};
+
+@mixin rectangle($w: fit-content, $h: fit-content, $bg: transparent, $border: none) {
+    width: $w;
+    height: $h;
+
+    @include shape($bg, $border);
+}
+
+@mixin square($size: fit-content, $bg: transparent, $border: none) {
+    aspect-ratio: 1;
+    @include rectangle($size, $size, $bg, $border);
+}
+
+@mixin circle($size: fit-content, $bg: transparent, $border: none) {
+    border-radius: 50%;
+    @include square($size, $bg, $border);
+}

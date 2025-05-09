@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gerenciador de senhas para uso pessoal e que não rouba seus dados :)">
+
+    <link rel="stylesheet" href="../public/css/register.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.11.0/system.min.js"></script>
+    <script src="../public/js/register.min.js" defer></script>
+
+    <link rel="shortcut icon" href="../public/icons/key-icon.ico" type="image/x-icon">
+    <title>Keys - Sign-up</title>
+</head>
+<body>
+    <header>
+        <h1>🔑 Keys</h1>
+    </header>
+
+    <main>
+        <section id="sign-up-box">
+            <h2>Sign-up</h2>
+            
+            <form id="register-form" class="sign-up-box__form">
+                <fieldset class="form__form-field">
+                    <label for="email-input">Email</label>
+
+                    <input name="email" class="form-field__input" id="email-input" type="email" placeholder="example@foo.bar" autocomplete="email">
+                </fieldset>
+
+                <fieldset class="form__form-field">
+                    <label for="pass-input">Senha de acesso</label>
+
+                    <div class="form-field__pass-container">
+                        <input name="main_pass" class="form-field__input" id="pass-input" type="password" placeholder="Digite sua senha" autocomplete="new-password">
+                        
+                        <toggle-view-button for="pass-input" tabindex="0"></toggle-view-button>
+                    </div>
+                </fieldset>
+
+                <fieldset class="form__form-field">
+                    <label for="repeat-pass-input">Confirme a senha de acesso</label>
+
+                    <div class="form-field__pass-container">
+                        <input name="repeat_main_pass" class="form-field__input" id="repeat-pass-input" type="password" placeholder="Digite sua senha novamente" autocomplete="new-password">
+                        
+                        <toggle-view-button for="repeat-pass-input" tabindex="0"></toggle-view-button>
+                    </div>
+                </fieldset>
+            </form>
+
+            <p class="sign-up-box__message form-message"></p>
+
+            <button type="submit" form="register-form" class="sign-up-box__submit-btn">Cadastrar</button>
+
+            <p>Já possui uma conta? <a href="./login.html">Entrar</a>!</p>
+        </section>
+    </main>
+</body>
+</html>

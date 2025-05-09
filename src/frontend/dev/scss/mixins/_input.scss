@@ -1,0 +1,27 @@
+@use '../setup/vars' as *;
+@use '../functions/get-contrast' as *;
+@use 'buttons' as *;
+
+@mixin input($type: 'default', $spe-color: none) {    
+    border-radius: $input-radius;
+    background-color: $backdrop-color;
+
+    @if $type == 'file' {
+        padding: $mid-padding;
+        border: $default-dashed-border;
+        text-align: center;
+
+        @include icon-btn;
+    } @else if $type == 'default' {
+        padding: $short-padding;
+        border: $default-border;
+    }
+
+    @if $type != 'file' {
+        @if $spe-color == none {
+            color: get-contrast($backdrop-color);
+        } @else {
+            color: $spe-color;
+        }
+    }
+}

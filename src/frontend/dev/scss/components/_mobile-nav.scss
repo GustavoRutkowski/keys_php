@@ -1,0 +1,48 @@
+@use '../setup/all' as *;
+
+nav#mobile-nav {
+    position: relative;
+    padding: $mid-padding;
+    padding-bottom: 0;
+    width: 100%;
+    display: none;
+
+    ul.mobile-nav__options {
+        flex-grow: 1;
+        margin-bottom: $mid-padding;
+        padding-bottom: $normal-padding;
+        border-bottom: $default-border;
+        font-size: $default-font-size;
+        @include flex-row(space-around, center);
+
+        li.options__option {
+            padding: $short-padding $normal-padding;
+            text-align: center;
+
+            &:not([class $= '--active']) {
+                @include retangular-btn(
+                    $w: $mobnav-btn-size,
+                    $bg: transparent,
+                    $b-radius: $large-radius,
+                    $border: $secondary-border,
+                    $spe-color: $secondary-color
+                );
+            }
+
+            &[class $= '--active'], &:hover {
+                @include retangular-btn(
+                    $w: $mobnav-btn-size,
+                    $bg: $secondary-color,
+                    $bg-hov: $secondary-color,
+                    $b-radius: $large-radius,
+                    $border: $secondary-border,
+                    $spe-color: #fff
+                );
+            }
+        }
+    }
+
+    @media only screen and (max-width: $breakpoint-large) {
+        display: block;
+    }
+}

@@ -1,0 +1,71 @@
+@use '../functions/get-contrast' as gc;
+
+// Colors
+
+$primary-color         : #343746;
+$backdrop-color        : #282a36;
+$lines-color           : #1e1f26;
+$secondary-color       : #ff79c6;
+$secondary-color-darken: #ff58b7;
+$cancel-color          : #ff5a5a;
+    // Contrasts
+    $primary-contrast: gc.get-contrast($primary-color);
+
+// Sizes
+
+$scrollbar-width : 1rem;
+$close-btn-size  : 2.5rem;
+$default-btn-size: 3.5rem;
+$mobnav-btn-size : 6rem;
+
+// Breakpoint Medias
+
+$breakpoint-small : 430px;
+$breakpoint-medium: 580px;
+$breakpoint-large : 760px;
+$breakpoint-xlarge: 1000px;
+
+// Opacities
+
+$white-opacity-2: rgba(#fff, .2);
+$white-opacity-4: rgba(#fff, .4);
+$black-opacity-4: rgba(#000, .4);
+    // With Functions
+    $main-contrast-opacity-4: rgba($primary-contrast, .4);
+
+// Fonts
+
+$default-font: 'Poppins', sans-serif;
+    // Font Sizes
+    $default-font-size  : 1.5rem;
+    $large-font-size    : 1.8rem;
+    $subtitles-font-size: 2rem;
+    $submit-file-size   : 4rem;
+
+    // Font Weights
+    $default-weight: 400;
+
+// Paddings
+
+$short-padding : .5rem;
+$normal-padding: $short-padding * 2;
+$mid-padding   : $normal-padding * 2;
+$large-padding : $mid-padding * 2;
+
+// Borders
+
+$default-border       : 2px solid $lines-color;
+$default-dashed-border: 3px dashed $lines-color;
+$secondary-border     : 2px solid $secondary-color;
+    // Border Radius
+    $tiny-radius : .4rem;
+    $input-radius: .5rem;
+    $large-radius: 2rem;
+
+// Shadows
+
+$default-shadow: 0 0 5px $black-opacity-4;
+
+// Transitions
+
+$default-transition: .4s;

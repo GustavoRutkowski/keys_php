@@ -1,0 +1,28 @@
+@use '../setup/all' as *;
+
+header {
+    padding: $short-padding $mid-padding;
+    width: 100%;
+    min-height: $default-btn-size + $short-padding;
+    background-color: $primary-color;
+    box-shadow: $default-shadow;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    @include flexbox($justify: space-between, $align: center, $gap: $mid-padding);
+
+    h1 {
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+        overflow: hidden;
+    }
+
+    button#logout-button {
+        @include circle-btn(
+            $size: $default-btn-size,
+            $bg-hov: $white-opacity-2,
+            $spe-color: $cancel-color
+        );
+    }
+}

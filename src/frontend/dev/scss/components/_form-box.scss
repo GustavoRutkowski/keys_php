@@ -1,0 +1,5 @@
+@use '../mixins/all' as *;
+
+#login-box, #sign-up-box {
+    @include form-box;
+}

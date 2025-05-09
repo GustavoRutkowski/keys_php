@@ -1,0 +1,59 @@
+{
+  "name": "keys",
+  "version": "1.0.0",
+  "description": "Seu gerenciador de senhas open-source, simples e confiável para uso pessoal.",
+  "main": "src/backend/server.js",
+  "type": "module",
+  "scripts": {
+    "api-tests": "set NODE_OPTIONS=--experimental-vm-modules && jest --config src/backend/jest.config.js",
+
+    "start": "npm-run-all --parallel ts-compile sass-compile api-server web-server",
+    "start-dev": "npm-run-all --parallel ts-compile-dev sass-compile-dev api-server-dev web-server-dev",
+    
+    "web-server": "node src/frontend/server.js",
+    "web-server-dev": "nodemon src/frontend/server.js",
+    
+    "api-server": "npm-run-all api-tests node src/backend/server.js",
+    "api-server-dev": "npm-run-all api-tests nodemon src/backend/server.js",
+    
+    "ts-compile": "webpack --mode production",
+    "ts-compile-dev": "webpack --mode development --watch",
+    
+    "sass-compile": "npm-run-all --parallel __sass-dashboard __sass-login __sass-register",
+    "sass-compile-dev": "npm-run-all --parallel __sass-dashboard-dev __sass-login-dev __sass-register-dev",
+    
+    "__sass-dashboard": "sass --style=compressed src/frontend/dev/scss/dashboard.scss:src/frontend/public/css/dashboard.min.css",
+    "__sass-login": "sass --style=compressed src/frontend/dev/scss/login.scss:src/frontend/public/css/login.min.css",
+    "__sass-register": "sass --style=compressed src/frontend/dev/scss/register.scss:src/frontend/public/css/register.min.css",
+    
+    "__sass-dashboard-dev": "sass --watch --style=compressed src/frontend/dev/scss/dashboard.scss:src/frontend/public/css/dashboard.min.css",
+    "__sass-login-dev": "sass --watch --style=compressed src/frontend/dev/scss/login.scss:src/frontend/public/css/login.min.css",
+    "__sass-register-dev": "sass --watch --style=compressed src/frontend/dev/scss/register.scss:src/frontend/public/css/register.min.css"
+  },
+  "author": "Gustavo Rutkowski Lara",
+  "license": "CC-BY-NC-SA-4.0",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^5.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.11.0",
+    "npm-run-all": "^4.1.5"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.0",
+    "jest": "^29.7.0",
+    "mini-css-extract-plugin": "^2.9.2",
+    "nodemon": "^3.1.4",
+    "sass": "^1.81.0",
+    "sass-loader": "^16.0.3",
+    "terser-webpack-plugin": "^5.3.10",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.2",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4"
+  }
+}

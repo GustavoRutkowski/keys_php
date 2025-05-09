@@ -1,0 +1,11 @@
+@use "setup/all";
+@use "components/form-box";
+@use "components/header";
+@use "components/scrollbar";
+
+main { overflow-y: scroll }
+
+p.sign-up-box__message {
+    &.sucess { color: rgb(125, 255, 113) }
+    &.error { color: rgb(255, 100, 100) }
+}

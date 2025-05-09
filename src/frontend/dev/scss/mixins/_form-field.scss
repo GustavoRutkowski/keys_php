@@ -1,0 +1,40 @@
+@use '../setup/vars' as *;
+@use 'buttons' as *;
+@use 'flexbox' as *;
+@use 'input' as *;
+
+@mixin form-field {
+    border: none;
+    @include flex-column(space-between, start, wrap, $short-padding);
+
+    input {
+        width: 100%;
+        @include input;
+        
+        &[type='file'] {
+            display: none;
+        }
+    }
+    
+    label.form-field__file-input {
+        width: 100%;
+        @include input('file');
+
+        .submit__submit-icon {
+            font-size: $submit-file-size;
+        }
+    }
+
+    .form-field__pass-container {
+        width: 100%;
+        @include flex-row($align: center, $gap: $normal-padding);
+
+        input {
+            flex-grow: 1;
+        }
+
+        button.form-field__toggle-pass-view {
+            @include icon-btn;
+        }
+    }
+}

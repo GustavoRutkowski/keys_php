@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        // "isolatedModules": true,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
+        "outDir": "./src/frontend/public/js",
+        "baseUrl": "./src/frontend",
+        "paths": { "@frontend/*": ["*"] }
+    },
+    "include": [ "src/frontend/**/*", "src/frontend/dev/ts/utils" ],
+    "exclude": [ "node_modules" ]
+}  

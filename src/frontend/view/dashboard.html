@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gerenciador de senhas para uso pessoal e que não rouba seus dados :)">
+
+    <link rel="stylesheet" href="../public/css/dashboard.min.css">
+    <script src="../public/js/dashboard.min.js" defer></script>
+
+    <link rel="shortcut icon" href="../public/icons/key-icon.ico" type="image/x-icon">
+    <title>Keys - Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>🔑 Keys</h1>
+
+        <button id="logout-button" title="Sair">
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
+    </header>
+
+    <nav id="mobile-nav">
+        <ul class="mobile-nav__options">
+            <li id="passwords-btn" class="options__option options__option--active" title="Suas Senhas">
+                <i class="fa-solid fa-key"></i>
+            </li>
+
+            <li id="history-btn" class="options__option" title="Histórico">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="passwords">
+            <h2>Suas Senhas</h2>
+
+            <ul class="passwords__passwords-list">
+                <li class="passwords-list__password">
+                    <section class="password__label">
+                        <section class="label__title">
+                            <div class="title__icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/732/732205.png" alt="Google Chrome">
+                            </div>
+                            
+                            <span class="title__title">Google Chrome</span>
+
+                            <button class="title__rename-title" title="Renomear Software">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+
+                            <button class="title__delete-password" title="Deletar Senha">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </section>
+
+                        <span class="label__timestamp">29/08/2024 - 21:26</span>
+                    </section>
+
+                    <div class="password__pass-container">
+                        <input type="password" value="ABCDEFGH" class="pass-container__pass-input" readonly>
+                        
+                        <div class="pass-container__action-btns">
+                            <button class="action-btns__toogle-pass-view-btn" title="Visualizar Senha">
+                                <i class="fa-solid fa-eye"></i>
+                                <!-- <i class="fa-solid fa-eye-slash"></i> -->
+                            </button>
+
+                            <button class="action-btns__rename-title" title="Alterar Senha">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="passwords-list__password">
+                    <section class="password__label">
+                        <section class="label__title">
+                            <div class="title__icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/732/732205.png" alt="Google Chrome">
+                            </div>
+                            
+                            <span class="title__title">Google Chrome</span>
+
+                            <button class="title__rename-title" title="Renomear Software">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+
+                            <button class="title__delete-password" title="Deletar Senha">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </section>
+
+                        <span class="label__timestamp">29/08/2024 - 21:26</span>
+                    </section>
+
+                    <div class="password__pass-container">
+                        <input type="password" value="ABCDEFGH" class="pass-container__pass-input" readonly>
+                        
+                        <div class="pass-container__action-btns">
+                            <button class="action-btns__toogle-pass-view-btn" title="Visualizar Senha">
+                                <i class="fa-solid fa-eye"></i>
+                                <!-- <i class="fa-solid fa-eye-slash"></i> -->
+                            </button>
+
+                            <button class="action-btns__rename-title" title="Alterar Senha">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="passwords-list__password">
+                    <section class="password__label">
+                        <section class="label__title">
+                            <div class="title__icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/732/732205.png" alt="Google Chrome">
+                            </div>
+                            
+                            <span class="title__title">Google Chrome</span>
+
+                            <button class="title__rename-title" title="Renomear Software">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+
+                            <button class="title__delete-password" title="Deletar Senha">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </section>
+
+                        <span class="label__timestamp">29/08/2024 - 21:26</span>
+                    </section>
+
+                    <div class="password__pass-container">
+                        <input type="password" value="ABCDEFGH" class="pass-container__pass-input" readonly>
+                        
+                        <div class="pass-container__action-btns">
+                            <button class="action-btns__toogle-pass-view-btn" title="Visualizar Senha">
+                                <i class="fa-solid fa-eye"></i>
+                                <!-- <i class="fa-solid fa-eye-slash"></i> -->
+                            </button>
+
+                            <button class="action-btns__rename-title" title="Alterar Senha">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="passwords-list__password">
+                    <section class="password__label">
+                        <section class="label__title">
+                            <div class="title__icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/732/732205.png" alt="Google Chrome">
+                            </div>
+                            
+                            <span class="title__title">Google Chrome</span>
+
+                            <button class="title__rename-title" title="Renomear Software">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+
+                            <button class="title__delete-password" title="Deletar Senha">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </section>
+
+                        <span class="label__timestamp">29/08/2024 - 21:26</span>
+                    </section>
+
+                    <div class="password__pass-container">
+                        <input type="password" value="ABCDEFGH" class="pass-container__pass-input" readonly>
+                        
+                        <div class="pass-container__action-btns">
+                            <button class="action-btns__toogle-pass-view-btn" title="Visualizar Senha">
+                                <i class="fa-solid fa-eye"></i>
+                                <!-- <i class="fa-solid fa-eye-slash"></i> -->
+                            </button>
+
+                            <button class="action-btns__rename-title" title="Alterar Senha">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="passwords-list__password">
+                    <section class="password__label">
+                        <section class="label__title">
+                            <div class="title__icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/732/732205.png" alt="Google Chrome">
+                            </div>
+                            
+                            <span class="title__title">Google Chrome</span>
+
+                            <button class="title__rename-title" title="Renomear Software">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+
+                            <button class="title__delete-password" title="Deletar Senha">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </section>
+
+                        <span class="label__timestamp">29/08/2024 - 21:26</span>
+                    </section>
+
+                    <div class="password__pass-container">
+                        <input type="password" value="ABCDEFGH" class="pass-container__pass-input" readonly>
+                        
+                        <div class="pass-container__action-btns">
+                            <button class="action-btns__toogle-pass-view-btn" title="Visualizar Senha">
+                                <i class="fa-solid fa-eye"></i>
+                                <!-- <i class="fa-solid fa-eye-slash"></i> -->
+                            </button>
+
+                            <button class="action-btns__rename-title" title="Alterar Senha">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="passwords__add-password-container">
+                <button class="add-password-container__add-password" title="Nova Senha">+</button>
+            </div>
+        </section>
+
+        <div class="vertical-line"></div>
+
+        <aside id="history">
+            <h2>Histórico de Senhas</h2>
+
+            <ul class="history__passwords-list">
+                <li class="passwords-list__password">
+                    <section class="password__label">
+                        <section class="label__title">
+                            <div class="title__icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/732/732205.png" alt="Google Chrome">
+                            </div>
+                            
+                            <span class="title__title">Google Chrome</span>
+
+                            <button class="title__delete-password" title="Recuperar Senha">
+                                <i class="fa-solid fa-arrow-rotate-left"></i>
+                            </button>
+
+                            <button class="title__delete-password" title="Deletar Senha Permanentemente">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </section>
+
+                        <span class="label__timestamp">29/08/2024 - 21:26</span>
+                    </section>
+
+                    <div class="password__pass-container">
+                        <input type="password" value="ABCDEFGH" class="pass-container__pass-input" readonly>
+                        
+                        <div class="pass-container__action-btns">
+                            <button class="action-btns__toogle-pass-view-btn" title="Visualizar Senha">
+                                <i class="fa-solid fa-eye"></i>
+                                <!-- <i class="fa-solid fa-eye-slash"></i> -->
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="passwords-list__password">
+                    <section class="password__label">
+                        <section class="label__title">
+                            <div class="title__icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/732/732205.png" alt="Google Chrome">
+                            </div>
+                            
+                            <span class="title__title">Google Chrome</span>
+
+                            <button class="title__delete-password" title="Recuperar Senha">
+                                <i class="fa-solid fa-arrow-rotate-left"></i>
+                            </button>
+
+                            <button class="title__delete-password" title="Deletar Senha Permanentemente">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </section>
+
+                        <span class="label__timestamp">29/08/2024 - 21:26</span>
+                    </section>
+
+                    <div class="password__pass-container">
+                        <input type="password" value="ABCDEFGH" class="pass-container__pass-input" readonly>
+                        
+                        <div class="pass-container__action-btns">
+                            <button class="action-btns__toogle-pass-view-btn" title="Visualizar Senha">
+                                <i class="fa-solid fa-eye"></i>
+                                <!-- <i class="fa-solid fa-eye-slash"></i> -->
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="passwords-list__password">
+                    <section class="password__label">
+                        <section class="label__title">
+                            <div class="title__icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/732/732205.png" alt="Google Chrome">
+                            </div>
+                            
+                            <span class="title__title">Google Chrome</span>
+
+                            <button class="title__delete-password" title="Recuperar Senha">
+                                <i class="fa-solid fa-arrow-rotate-left"></i>
+                            </button>
+
+                            <button class="title__delete-password" title="Deletar Senha Permanentemente">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </section>
+
+                        <span class="label__timestamp">29/08/2024 - 21:26</span>
+                    </section>
+
+                    <div class="password__pass-container">
+                        <input type="password" value="ABCDEFGH" class="pass-container__pass-input" readonly>
+                        
+                        <div class="pass-container__action-btns">
+                            <button class="action-btns__toogle-pass-view-btn" title="Visualizar Senha">
+                                <i class="fa-solid fa-eye"></i>
+                                <!-- <i class="fa-solid fa-eye-slash"></i> -->
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="passwords-list__password">
+                    <section class="password__label">
+                        <section class="label__title">
+                            <div class="title__icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/732/732205.png" alt="Google Chrome">
+                            </div>
+                            
+                            <span class="title__title">Google Chrome</span>
+
+                            <button class="title__delete-password" title="Recuperar Senha">
+                                <i class="fa-solid fa-arrow-rotate-left"></i>
+                            </button>
+
+                            <button class="title__delete-password" title="Deletar Senha Permanentemente">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </section>
+
+                        <span class="label__timestamp">29/08/2024 - 21:26</span>
+                    </section>
+
+                    <div class="password__pass-container">
+                        <input type="password" value="ABCDEFGH" class="pass-container__pass-input" readonly>
+                        
+                        <div class="pass-container__action-btns">
+                            <button class="action-btns__toogle-pass-view-btn" title="Visualizar Senha">
+                                <i class="fa-solid fa-eye"></i>
+                                <!-- <i class="fa-solid fa-eye-slash"></i> -->
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="passwords-list__password">
+                    <section class="password__label">
+                        <section class="label__title">
+                            <div class="title__icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/732/732205.png" alt="Google Chrome">
+                            </div>
+                            
+                            <span class="title__title">Google Chrome</span>
+
+                            <button class="title__delete-password" title="Recuperar Senha">
+                                <i class="fa-solid fa-arrow-rotate-left"></i>
+                            </button>
+
+                            <button class="title__delete-password" title="Deletar Senha Permanentemente">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </section>
+
+                        <span class="label__timestamp">29/08/2024 - 21:26</span>
+                    </section>
+
+                    <div class="password__pass-container">
+                        <input type="password" value="ABCDEFGH" class="pass-container__pass-input" readonly>
+                        
+                        <div class="pass-container__action-btns">
+                            <button class="action-btns__toogle-pass-view-btn" title="Visualizar Senha">
+                                <i class="fa-solid fa-eye"></i>
+                                <!-- <i class="fa-solid fa-eye-slash"></i> -->
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+
+        <dialog id="password-modal">
+            <button class="password-modal__close-modal-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <form id="new-pass-form" class="password-modal__form icon-only" method="post">
+                <fieldset class="form__form-field name-field">
+                    <label for="software-input">Nome</label>
+    
+                    <input class="form-field__input" id="software-input" type="text" placeholder="Digite o nome do software">
+                </fieldset>
+
+                <fieldset class="form__form-field">
+                    <label for="software-input">Senha</label>
+    
+                    <div class="form-field__pass-container">
+                        <input id="software-input" type="password" class="pass-container__pass-input" placeholder="Digite a senha do software">
+                        
+                        <button class="form-field__toggle-pass-view" title="Visualizar Senha">
+                            <i class="fa-solid fa-eye"></i>
+                            <!-- <i class="fa-solid fa-eye-slash"></i> -->
+                        </button>
+                    </div>
+                </fieldset>
+
+                <fieldset class="form__form-field">
+                    <label for="icon-input">Ícone do Software</label>
+
+                    <label class="form-field__file-input" for="icon-input">
+                        <div class="submit__submit-icon">
+                            <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                        </div>
+
+                        <span>Envie uma Imagem</span>
+                    </label>
+
+                    <input type="file" id="icon-input">
+                </fieldset>
+            </form>
+
+            <button form="new-pass-form" class="password-modal__submit-btn" type="submit">Criar Senha</button>
+        </dialog>
+    </main>
+</body>
+</html>

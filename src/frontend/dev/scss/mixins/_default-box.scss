@@ -1,0 +1,13 @@
+@use '../setup/vars' as *;
+@use 'auto-contrast' as *;
+
+@mixin default-box($min-w: auto, $max-w: none) {
+    padding: $mid-padding;
+    border-radius: $tiny-radius;
+    min-width: $min-w;
+    width: fit-content;
+    max-width: $max-w;
+    box-shadow: $default-shadow;
+
+    @include auto-contrast($primary-color);
+}
