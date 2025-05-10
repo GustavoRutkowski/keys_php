@@ -1,6 +1,6 @@
 import { createPool } from 'mysql2/promise.js';
 import DBSetup from '../helpers/db-setup.js';
-import dotenv from 'dotenv/lib/main.js';
+import dotenv from 'dotenv';
 dotenv.config({ path: 'src/.env' });
 
 const connection = createPool({

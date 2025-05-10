@@ -8,7 +8,7 @@
 // const decodedToken = Token.verify(token.value);
 
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv/lib/main';
+import dotenv from 'dotenv';
 dotenv.config({ path: 'src/.env' });
 
 class JWTToken {

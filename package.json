@@ -5,16 +5,16 @@
   "main": "src/backend/server.js",
   "type": "module",
   "scripts": {
-    "api-tests": "set NODE_OPTIONS=--experimental-vm-modules && jest --config src/backend/jest.config.js",
-
     "start": "npm-run-all --parallel ts-compile sass-compile api-server web-server",
     "start-dev": "npm-run-all --parallel ts-compile-dev sass-compile-dev api-server-dev web-server-dev",
     
     "web-server": "node src/frontend/server.js",
     "web-server-dev": "nodemon src/frontend/server.js",
     
-    "api-server": "npm-run-all api-tests node src/backend/server.js",
-    "api-server-dev": "npm-run-all api-tests nodemon src/backend/server.js",
+    "api-server": "npm-run-all node src/backend/server.js",
+    "api-server-dev": "npm-run-all __nodemon-server-dev",
+
+    "__nodemon-server-dev": "nodemon src/backend/server.js",
     
     "ts-compile": "webpack --mode production",
     "ts-compile-dev": "webpack --mode development --watch",
@@ -45,7 +45,6 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
-    "jest": "^29.7.0",
     "mini-css-extract-plugin": "^2.9.2",
     "nodemon": "^3.1.4",
     "sass": "^1.81.0",
