@@ -19,9 +19,14 @@ header {
     }
 
     button#logout-button {
-        @include circle-btn(
-            $size: $default-btn-size,
+        aspect-ratio: 1;
+    
+        @include flex-center;
+        @include retangular-btn(
+            $w: $default-btn-size,
+            $h: $default-btn-size,
             $bg-hov: $white-opacity-2,
+            $b-radius: 1rem,
             $spe-color: $cancel-color
         );
     }

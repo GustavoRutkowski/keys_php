@@ -1,0 +1,24 @@
+@use "../setup/all" as s;
+
+aside#panels-bar {
+    padding: 1rem 0;
+    width: 100%;
+    max-width: calc(100dvw / 6);
+    font-size: 1.8rem;
+    background-color: s.$primary-color;
+    overflow: hidden;
+
+    li.links-list__item {
+        padding: 1rem 2rem;
+        background-color: blue;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    a {
+        color: white;
+        white-space: nowrap;
+        overflow: hidden;
+        text-wrap: nowrap;
+    }
+}

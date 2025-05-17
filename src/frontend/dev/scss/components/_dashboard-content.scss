@@ -5,8 +5,9 @@ main {
     overflow: hidden;
     @include flexbox;
 
-    section#passwords, aside#history {
+    section#passwords {
         display: block;
+        position: relative;
         height: 100%;
         padding: $mid-padding;
         overflow-y: scroll;
@@ -18,7 +19,7 @@ main {
             text-align: center;
         }
 
-        ul[class $= '__passwords-list'] {
+        ul.passwords__passwords-list {
             @include flexbox($justify: center, $align: center, $gap: $mid-padding);
 
             &.passwords__passwords-list {
@@ -29,10 +30,6 @@ main {
                 flex-direction: column;
             }
         }
-    }
-
-    section#passwords {
-        position: relative;
         
         .passwords__add-password-container {
             width: 100%;
@@ -46,20 +43,6 @@ main {
     
                 @include circle-btn($default-btn-size, $secondary-color, $secondary-color-darken, #fff);
             }
-        }
-    }
-
-    .vertical-line {
-        margin: $mid-padding 0;
-        width: 2px;
-        background-color: $lines-color;
-    }
-
-    aside#history {
-        min-width: fit-content;
-
-        @media only screen and (max-width: $breakpoint-large) {
-            display: none;
         }
     }
 }
