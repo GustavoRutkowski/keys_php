@@ -1,7 +1,6 @@
 @use '../setup/all' as *;
 
 header {
-    padding: $short-padding $mid-padding;
     width: 100%;
     min-height: $default-btn-size + $short-padding;
     background-color: $primary-color;
@@ -13,16 +12,56 @@ header {
     @include flexbox($justify: space-between, $align: center, $gap: $mid-padding);
 
     h1 {
+        padding: $short-padding $mid-padding;
         text-overflow: ellipsis;
         text-wrap: nowrap;
         overflow: hidden;
     }
 
-    button#logout-button {
-        @include circle-btn(
-            $size: $default-btn-size,
-            $bg-hov: $white-opacity-2,
-            $spe-color: $cancel-color
-        );
+    nav#header-navigator {
+        margin-right: 1rem;
+        height: 100%;
+        
+        ul.header-navigator__links-list {
+            @include flex-row($justify: center, $align: center, $gap: 1rem);
+            
+            width: fit-content;
+            height: 100%;
+            list-style: none;
+            text-transform: uppercase;
+        
+            li.links-list__item {
+                width: fit-content;
+                height: 100%;
+                
+                a {
+                    height: 100%;
+                    padding: $short-padding $normal-padding;
+                    color: white;
+                    font-size: 1.6rem;
+                    cursor: pointer;
+                    transition: all .3s;
+                    @include flexbox(row, center, center);
+        
+                    &:hover {
+                        text-decoration: underline;
+                        background-color: rgba(#000, .2);
+                    }
+                }
+            }
+        }
     }
+
+    // button#logout-button {
+    //     aspect-ratio: 1;
+    
+    //     @include flex-center;
+    //     @include retangular-btn(
+    //         $w: $default-btn-size,
+    //         $h: $default-btn-size,
+    //         $bg-hov: $white-opacity-2,
+    //         $b-radius: 1rem,
+    //         $spe-color: $cancel-color
+    //     );
+    // }
 }

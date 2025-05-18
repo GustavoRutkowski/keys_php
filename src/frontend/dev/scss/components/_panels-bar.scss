@@ -1,0 +1,39 @@
+@use "../setup/all" as s;
+@use "../mixins/all" as m;
+
+aside#panels-bar {
+    padding: 2rem 0;
+    width: 100%;
+    max-width: calc(100dvw / 6);
+    font-size: 1.8rem;
+    background-color: s.$primary-color;
+    overflow: hidden;
+
+    ul.nav__links-list {
+        @include m.flex-column($gap: 5px);
+
+        li.links-list__item {
+            padding: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+            transition: all 0.3s;
+            @include m.flexbox();
+            
+            &:hover, &.links-list__item--active {
+                background-color: rgba(#000, .2);
+            }
+
+            a {
+                flex: 1 1 auto;
+                min-width: 0;
+                padding: 1rem 2rem;
+                color: white;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block;
+            }
+        }
+    }
+}

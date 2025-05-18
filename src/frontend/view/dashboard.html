@@ -8,16 +8,23 @@
     <link rel="stylesheet" href="../public/css/dashboard.min.css">
     <script src="../public/js/dashboard.min.js" defer></script>
 
-    <link rel="shortcut icon" href="../public/icons/key-icon.ico" type="image/x-icon">
-    <title>Keys - Dashboard</title>
+    <link rel="shortcut icon" href="../public/icons/key-icon.png" type="image/x-icon">
+    <title>KeysPHP - Dashboard</title>
 </head>
 <body>
+    <!-- Criar um componente com o header já feito -->
+    <!-- Adicionar uma lista de links no header -->
+        <!-- INÍCIO (index), PAINÉL (dashboard) -->
     <header>
         <h1>🔑 Keys</h1>
 
-        <button id="logout-button" title="Sair">
-            <i class="fa-solid fa-right-from-bracket"></i>
-        </button>
+        <nav id="header-navigator">
+            <ul class="header-navigator__links-list">
+                <li class="links-list__item"><a href="/index">Início</a></li>
+                <li class="links-list__item"><a href="/faq">Suporte</a></li>
+                <li class="links-list__item"><a href="/dashboard">Painél de Controle</a></li>
+            </ul>
+        </nav>
     </header>
 
     <nav id="mobile-nav">
@@ -33,18 +40,42 @@
     </nav>
 
     <main>
-        <section id="passwords">
-            <h2>Suas Senhas</h2>
+        <!-- Adicionar um ícone da foto de perfil e nome do usuário -->
+        <!-- Adicionar o botão de logout ao lado do ícone e nome -->
+        <!-- ÍCONE, NOME, BOTÃO LOGOUT -->
+        <aside id="panels-bar">
+            <nav class="panels-bar__nav">
+                <ul class="nav__links-list">
+                    <li class="links-list__item links-list__item--active">
+                        <a href="">Senhas</a>
+                    </li>
 
-            <ul class="passwords__passwords-list">
-                <li class="passwords-list__password">
-                    <section class="password__label">
-                        <section class="label__title">
-                            <div class="title__icon">
-                                <img src="https://cdn-icons-png.flaticon.com/512/732/732205.png" alt="Google Chrome">
-                            </div>
-                            
-                            <span class="title__title">Google Chrome</span>
+                    <li class="links-list__item">
+                        <a href="">Cartões</a>
+                    </li>
+
+                    <li class="links-list__item">
+                        <a href="">Documentos Digitais</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <section id="panel-selected">
+            <!-- por enquanto... -->
+            <section class="panel-selected__passwords" id="passwords">
+                <h2>Suas Senhas</h2>
+
+                <ul class="passwords__passwords-list">
+                    <li class="passwords-list__password">
+                        <section class="password__label">
+                            <section class="label__title">
+                                <div class="title__icon">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/732/732205.png"
+                                        alt="Google Chrome">
+                                </div>
+
+                                <span class="title__title">Google Chrome</span>
 
                             <button class="title__rename-title" title="Renomear Software">
                                 <i class="fa-solid fa-pen"></i>
