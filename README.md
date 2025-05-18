@@ -1,3 +1,3 @@
 # Keys - PHP
 
-Esse projeto é uma versão alternativa de um outro projeto meu conhecido como `keys`. Ele foi criado com o propósito de tentar encaixar o `keys` em um Micro-SASS. Outro dos nossos propósitos é transferir a API do `keys` original, feita em **Node.js** para a linguagem **PHP**.
+Esse projeto é uma versão alternativa de um outro projeto meu conhecido como `keys`. Ele foi criado com o propósito de tentar encaixar o `keys` em um Micro-SASS, além disso ele conta com features um pouco diferentes, o foco dele é mais em guardar dados sensíveis, senhas, cartões, documentos pessoais do que de fato trabalhar interagindo com o navegador do usuário. Outro dos nossos propósitos é transferir a API do `keys` original, feita em **Node.js** para a linguagem **PHP**.
