@@ -65,7 +65,7 @@ main {
                 transition: all .3s ease-in-out;
                 cursor: pointer;
                 
-                &:hover { background: transparent }
+                &:hover { background-color: transparent !important }
             }
 
             // Template de imagem
