@@ -11,6 +11,10 @@ const app = express();
 
 app.use(express.static(__dirname));
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'view', 'index.html'));
+});
+
 app.get('/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'view', 'dashboard.html'));
 });

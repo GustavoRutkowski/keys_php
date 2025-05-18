@@ -19,13 +19,15 @@
     "ts-compile": "webpack --mode production",
     "ts-compile-dev": "webpack --mode development --watch",
     
-    "sass-compile": "npm-run-all --parallel __sass-dashboard __sass-login __sass-register",
-    "sass-compile-dev": "npm-run-all --parallel __sass-dashboard-dev __sass-login-dev __sass-register-dev",
+    "sass-compile": "npm-run-all --parallel __sass-index __sass-dashboard __sass-login __sass-register",
+    "sass-compile-dev": "npm-run-all --parallel __sass-index-dev __sass-dashboard-dev __sass-login-dev __sass-register-dev",
     
+    "__sass-index": "sass --style=compressed src/frontend/dev/scss/index.scss:src/frontend/public/css/index.min.css",
     "__sass-dashboard": "sass --style=compressed src/frontend/dev/scss/dashboard.scss:src/frontend/public/css/dashboard.min.css",
     "__sass-login": "sass --style=compressed src/frontend/dev/scss/login.scss:src/frontend/public/css/login.min.css",
     "__sass-register": "sass --style=compressed src/frontend/dev/scss/register.scss:src/frontend/public/css/register.min.css",
     
+    "__sass-index-dev": "sass --watch --style=compressed src/frontend/dev/scss/index.scss:src/frontend/public/css/index.min.css",
     "__sass-dashboard-dev": "sass --watch --style=compressed src/frontend/dev/scss/dashboard.scss:src/frontend/public/css/dashboard.min.css",
     "__sass-login-dev": "sass --watch --style=compressed src/frontend/dev/scss/login.scss:src/frontend/public/css/login.min.css",
     "__sass-register-dev": "sass --watch --style=compressed src/frontend/dev/scss/register.scss:src/frontend/public/css/register.min.css"
