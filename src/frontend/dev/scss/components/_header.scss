@@ -8,6 +8,7 @@ header {
     position: relative;
     overflow: hidden;
     z-index: 1;
+    color: #fff;
 
     @include flexbox($justify: space-between, $align: center, $gap: $mid-padding);
 
@@ -16,6 +17,8 @@ header {
         text-overflow: ellipsis;
         text-wrap: nowrap;
         overflow: hidden;
+
+        a { color: white }
     }
 
     nav#header-navigator {
@@ -44,7 +47,8 @@ header {
                     @include flexbox(row, center, center);
         
                     &:hover {
-                        text-decoration: underline;
+                        // text-decoration: underline;
+                        border-bottom: 1px solid white;
                         background-color: rgba(#000, .2);
                     }
                 }

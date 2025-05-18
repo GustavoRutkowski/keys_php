@@ -1,0 +1,171 @@
+@use "setup/all" as *;
+@use "components/header";
+@use "components/scrollbar";
+@use "components/footer";
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+main {
+    overflow-y: scroll;
+
+    #landing-page {
+        padding: 8rem 4rem;
+        @include flex-column($gap: 6rem);
+
+        section.landing-page__section {
+            padding: 2rem;
+            border: 4px solid;
+            border-radius: 1.2rem;
+            width: fit-content;
+            max-width: 55dvw;
+            font-size: 2rem;
+            box-shadow: 8px 8px 0 rgba(black, .0375);
+
+            &:nth-child(even) { margin-left: auto }
+            
+            h2, h3, p {
+                &.center { text-align: center }
+            }
+
+            h2 {
+                font-size: 5rem;
+                font-weight: bolder;
+            }
+
+            h3 { font-weight: bolder }
+
+            p { text-align: justify }
+            p + p { margin-top: 1.5rem }
+            
+            b { font-weight: bolder }
+            .semibold { font-weight: 600 } 
+
+            ul {
+                margin: 2rem auto;
+                list-style: disc;
+                padding-left: 2rem;
+                max-width: fit-content;
+                font-size: 1.8rem;
+            }
+
+            button {
+                margin: 2rem;
+                padding: 7.5px 1.5rem;
+                border: 2px solid;
+                border-radius: 5rem;
+                color: white;
+                font-weight: 600;
+                transition: all .3s ease-in-out;
+                cursor: pointer;
+                
+                &:hover { background: transparent }
+            }
+
+            // Template de imagem
+            
+            .section__image-template {
+                margin: 3rem 6rem;
+                border-radius: 2rem;
+                width: calc(100% - (6rem * 2));
+                aspect-ratio: 3 / 2;
+                background-color: #ebebeb;
+                color: black;
+
+                @include flexbox(row, center, center);
+            }
+
+            // Seções específicas
+
+            &.landing-page__start-section {
+                background-color: #bbe3ff;
+                border-color: #6193ff;
+                border-bottom-right-radius: 5rem;
+                animation: fade-in .7s ease-out;
+
+                h2 {
+                    max-width: 50dvw;
+                    color: #6193ff;
+                }
+
+                p { color: #1c4192 }
+
+                button {
+                    border-color: #6193ff;
+                    background-color: #6193ff;
+                    
+                    &:hover { color: #6193ff }
+                }
+            }
+
+            &.landing-page__passwords-section {
+                background-color: #c7ffe3;
+                border-color: #1ddb7c;
+                animation: fade-in calc(.7s * 3) ease-out;
+
+                h2 { color: #1ddb7c }
+                h3 { color: #19a15d }
+                p { color: #19a15d }
+            }
+
+            &.landing-page__security-section {
+                background-color: #fff2c9;
+                border-color: #ffb561;
+
+                h2 { color: #ffb561 }
+                h3 { color: #ff8c49 }
+                p { color: #ff8c49 }
+            }
+
+            &.landing-page__cards-section {
+                background-color: #e9e2ff;
+                border-color:#be8dff;
+
+                h2 { color: #be8dff }
+                h3 { color: #c767ff }
+                p { color: #c767ff }
+            }
+
+            &.landing-page__docs-section {
+                background-color: #fff1e6;
+                border-color: #af7461;
+
+                h2 { color: #af7461 }
+                h3 { color: #9b4f49 }
+                p { color: #9b4f49 }
+            }
+
+            &.landing-page__plan-section {
+                background-color: #e1f3ff;
+                border-color: #989fff;
+
+                h2 { color: #989fff }
+                h3 { color: #6f79ff }
+                p  { color: #6f79ff }
+                ul { color: #6f79ff }
+            }
+
+            &.landing-page__buy-section {
+                background-color: #ffd9bb;
+                border-color: #ffa379;
+
+                h2 { color: #ffa379 }
+                h3 { color: #ff7b3e }
+                p  { color: #ff7b3e }
+
+                button {
+                    border-color: #ff7b3e;
+                    background-color: #ff7b3e;
+
+                    &:hover { color: #ff7b3e }
+                }
+            }
+        }
+    }
+}
