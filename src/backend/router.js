@@ -10,15 +10,19 @@ const router = Router();
 router.post('/users', validateUser, validatePasswordsMatch, UsersRoutes.createUser);
 router.post('/users/:id/passwords', validatePassword, UsersRoutes.createPassword);
 
-router.get('/users', UsersRoutes.getAll);
+router.get('/users', UsersRoutes.getAll); // N
 router.get('/users/:id', UsersRoutes.getUser);
+// /users/user
 router.get('/users/:id/passwords', UsersRoutes.getAllPasswordsFrom);
-router.get('/users/:userId/passwords/:passId', UsersRoutes.getPasswordFrom);
+// /users/user/passwords
+router.get('/users/:userId/passwords/:passId', UsersRoutes.getPasswordFrom); // N
 
 router.put('/users/:id', validateUser, UsersRoutes.updateUser);
+// /users/user
 router.put('/users/:userId/passwords/:passId', validatePassword, UsersRoutes.updatePasswordFrom);
+// /users/user/passwords/:passId
 
-router.delete('/users/:id', UsersRoutes.deleteUser);
+router.delete('/users/:id', UsersRoutes.deleteUser); // N
 router.delete('/users/:userId/passwords/:passId', UsersRoutes.deletePasswordFrom);
 
 router.post('/login', validateUser, UsersRoutes.login);

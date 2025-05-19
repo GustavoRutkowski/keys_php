@@ -1,6 +1,6 @@
 interface ITypedMessage {
     message: string,
-    type: 'error' | 'sucess'
+    type: 'error' | 'success'
 };
 
 export default ITypedMessage;

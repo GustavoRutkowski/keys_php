@@ -21,28 +21,43 @@ registerForm.addEventListener('submit', async e => {
 
     const formData = new FormData(registerForm);
 
-    // Fields:
-    const email = formData.get('email') as string || '';
-    const main_pass = formData.get('main_pass') as string || '';
-    const repeat_main_pass = formData.get('repeat_main_pass') as string || '';
+    const {
+        email = '',
+        main_pass = '',
+        repeat_main_pass = ''        
+    } = Object.fromEntries(formData.entries()) as Record<string, string>;
     
+    if (!email || !main_pass || !repeat_main_pass) {
+        submitMessage.showMessage({
+            type: 'error',
+            message: 'Todos os campos são obrigatórios.',
+        });
+
+        return;
+    }
+
     const credentials: IUserCredentials = { email, main_pass, repeat_main_pass };
     const createdUser: THTTPPostResponse = await Users.createUser(credentials);
     const userCreated: boolean = 'insertId' in createdUser;
 
-    const message: ITypedMessage = {
-        type: userCreated ? 'sucess' : 'error',
+    const typedMessage: ITypedMessage = {
+        type: userCreated ? 'success' : 'error',
         message: '',
     };
+    
+    const errorMessage = (createdUser as IPostException)?.message ?? 'Não foi possível criar o usuário.';
+    
+    try {
+        // Set message translated from pt-BR
+        typedMessage.message = userCreated
+            ? 'Usuário criado com sucesso!'
+            : await Translator.translate(errorMessage);
+    } catch (e) {
+        typedMessage.message = userCreated
+            ? 'Usuário criado com sucesso!'
+            : errorMessage;
+    }
 
-    // Translator.translate copy
-    const translate = Translator.translate;
-
-    // Set message translated from pt-BR
-    message.message = userCreated
-        ? 'Usuário criado com sucesso!'
-        : await translate((createdUser as IPostException).message);
-
-    submitMessage.showMessage(message);
+    submitMessage.showMessage(typedMessage);
     if (userCreated) location.href = '/login';
 });
