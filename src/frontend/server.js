@@ -15,8 +15,8 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'view', 'index.html'));
 });
 
-app.get('/dashboard', (req, res) => {
-    res.sendFile(path.join(__dirname, 'view', 'dashboard.html'));
+app.get('/faq', (req, res) => {
+    res.sendFile(path.join(__dirname, 'view', 'faq.html'));
 });
 
 app.get('/login', (req, res) => {
@@ -25,6 +25,10 @@ app.get('/login', (req, res) => {
 
 app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, 'view', 'register.html'));
+});
+
+app.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, 'view', 'dashboard.html'));
 });
 
 const PORT = process.env.SERVER_PORT || 5500;
