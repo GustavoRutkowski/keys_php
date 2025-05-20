@@ -4,10 +4,11 @@ class SubmitFormMessage {
     private p: HTMLParagraphElement;
 
     constructor(form: HTMLFormElement) {
+        console.log(form.querySelector('p.form-message'));
         this.p = form.querySelector('p.form-message') as HTMLParagraphElement;
     }
 
-    showMessage({ message, type }: ITypedMessage, durationSeconds = 3) {
+    showMessage({ message, type }: ITypedMessage, durationSeconds = 5) {
         this.p.textContent = message;
         this.p.classList.add(type);
         
