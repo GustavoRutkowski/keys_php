@@ -9,7 +9,7 @@ use InvalidArgumentException;
 const CONF_DB_HOST = "localhost"; // localhost
 const CONF_DB_NAME = "keys_php";
 const CONF_DB_USER = "root";
-const CONF_DB_PASS = "asdf1234"; // nada
+const CONF_DB_PASS = "";
 
 abstract class Connect
 {
@@ -42,6 +42,7 @@ abstract class Connect
         return self::$instance;
     }
 
+    // Connect::execute("SELECT * FROM users WHERE id = ?", [ $id ]);
     public static function execute(string $query, array $data = [])
     {
         $queryType = strtoupper(strtok(trim($query), ' '));

@@ -1,5 +1,7 @@
 <?php
 
+namespace Source\Controllers;
+
 abstract class Controller {
     protected static function getRequestData(array $data = []): array {
         $params = $data ?? [];

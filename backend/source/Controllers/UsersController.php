@@ -2,12 +2,16 @@
 
 // PUT /users/user
 
+namespace Source\Controllers;
+
 use Source\Models\User;
 
 class UsersController extends Controller {
     // POST
     public function createUser(array $data) {
         $body = $this->getRequestData($data)['body'];
+
+        //var_dump($this->getRequestData($data));
 
         $createdUser = User::create(
             $body['name'],
@@ -20,11 +24,13 @@ class UsersController extends Controller {
 
     // GET
     public function getUserByID(array $data) {
+        //var_dump($data);
+
         $id = $this->getRequestData($data)['params']['id'];
 
         $user = User::getById($id);
 
-        if ($user['message']) return $this::send(404, $user);
+        if (array_key_exists('message', $user)) return $this::send(404, $user);
         $this::send(200, $user);
     }
     public function getUser(array $data) {
@@ -32,7 +38,7 @@ class UsersController extends Controller {
 
         $user = User::getByToken($token);
 
-        if ($user['message']) return $this::send(404, $user);
+        if (array_key_exists('message', $user)) return $this::send(404, $user);
         $this::send(200, $user);
     }
 
@@ -48,7 +54,7 @@ class UsersController extends Controller {
             $body['picture']
         );
 
-        if ($userUpdated['sucess']) $this::send(204, []);
+        if ($userUpdated['success']) $this::send(204, []);
         $this::send(400, $userUpdated);
     }
 
@@ -58,7 +64,7 @@ class UsersController extends Controller {
 
         $loginResult = User::login($body['email'], $body['main_pass']);
 
-        return $loginResult['sucess']
+        return $loginResult['success']
             ? $this::send(200, $loginResult)
             : $this::send(401, $loginResult);
     }

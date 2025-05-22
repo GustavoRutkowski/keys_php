@@ -9,9 +9,9 @@ use \Exception;
 
 class JWTToken
 {
-    private static const SECRET_KEY = 'secret-key_#03#19';
-    private static const ALGORITHM = 'HS512';
-    private static const URL = 'http://localhost:2469';
+    private const SECRET_KEY = 'secret-key_#03#19';
+    private const ALGORITHM = 'HS512';
+    private const URL = 'http://localhost:8080';
     private string $value;
     private array $payload;
     private string $expires;
@@ -37,6 +37,7 @@ class JWTToken
         $this->value = JWT::encode($data, JWTToken::SECRET_KEY, JWTToken::ALGORITHM);
     }
 
+    // JWTToken::from($token) -> O from gera um objeto do tipo token a partir da string, ja que o verify usa o objeto, n a string
     public static function from(string $token): ?JWTToken
     {
         try {

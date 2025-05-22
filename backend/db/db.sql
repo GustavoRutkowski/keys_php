@@ -5,7 +5,11 @@ CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
+<<<<<<< HEAD
     main_pass VARCHAR(100) NOT NULL,
+=======
+    main_pass LONGTEXT,
+>>>>>>> back/main
     picture LONGTEXT
 );
 
@@ -21,7 +25,11 @@ CREATE TABLE passwords (
     user_id INT NOT NULL,
     software_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+<<<<<<< HEAD
     FOREIGN KEY (software_id) REFERENCES software(id) ON DELETE SET NULL
+=======
+    FOREIGN KEY (software_id) REFERENCES softwares(id) ON DELETE SET NULL
+>>>>>>> back/main
 );
 
 CREATE TABLE feedbacks (
@@ -49,3 +57,35 @@ CREATE TABLE digital_documents (
     photo LONGTEXT NOT NULL,
     nickname VARCHAR(100)
 );
+<<<<<<< HEAD
+=======
+
+CREATE TABLE credit_cards (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nickname VARCHAR(100),
+    masked_number VARCHAR(25),
+    encrypted_number TEXT NOT NULL,
+    cardholder_name VARCHAR(100),
+    brand VARCHAR(50),
+    issuer_bank VARCHAR(100),
+    credit_limit DECIMAL(10,2),
+    due_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE debit_cards (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nickname VARCHAR(100),
+    masked_number VARCHAR(25),
+    encrypted_number TEXT NOT NULL,
+    cardholder_name VARCHAR(100),
+    brand VARCHAR(50),
+    issuer_bank VARCHAR(100),
+    linked_account VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+>>>>>>> back/main

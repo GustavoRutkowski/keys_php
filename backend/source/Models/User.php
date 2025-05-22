@@ -51,22 +51,27 @@ class User
     public static function getByToken(string $token) {
         $jwt = JWTToken::from($token);
 
-        $res = JWTToken::verify($jwt);
+        if ($jwt !== null) {
+            $res = JWTToken::verify($jwt);
+            
+            if ($res['valid']) {
+                $id = $res['decoded_token']->id;
+                return User::getById($id);
+            }
 
-        if ($res['valid']) {
-            $id = $res['decoded_token']['id'];
-            return User::getById($id);
+            return [ 'message' => $res['message'] ];
         }
 
-        return [ 'message' => $res['message'] ];
+        return [ 'message' => 'Invalid or malformed token' ];
     }
+
 
     public static function getById(int $id) {
         if (!$id) {
             return [ 'message' => 'id is required!' ];
         }
 
-        $query = 'SELECT (id, name, email, picture) FROM users WHERE id = ?';
+        $query = 'SELECT id, name, email, picture FROM users WHERE id = ?';
 
         $results = Connect::execute($query, [ $id ])['data'];
 
@@ -79,41 +84,45 @@ class User
     }
 
     public static function update(string $token, ?string $name, ?string $main_pass, ?string $picture) {
-        if (!$token) return [ 'sucess' => false, 'message' => 'token is required!' ];
+        if (!$token) return [ 'success' => false, 'message' => 'token is required!' ];
         
         $id = null;
 
         $jwt = JWTToken::from($token);
+
+        if ($jwt === null) return [ 'success' => false, 'message' => 'expired or invalid token!' ];
+
         $res = JWTToken::verify($jwt);
 
-        if (!$res['valid']) return [ 'sucess' => false, 'message' => 'expired or invalid token!' ];
-        $id = $res['decoded_token']['id'];
-
+        if (!$res['valid']) return [ 'success' => false, 'message' => 'expired or invalid token!' ];
+        
+        $id = $res['decoded_token']->id;
+        
         if (!$name && !$main_pass && !$picture)
-        return [ 'sucess' => false, 'message' => 'to update, you must pass at least one argument' ];
+        return [ 'success' => false, 'message' => 'to update, you must pass at least one argument' ];
 
         $query = 'UPDATE users SET';
         $data = [];
 
-        if ($name) $query .= 'name = ?'; $data[] = $name;
-        if ($picture) $query .= 'picture = ?'; $data[] = $picture;
+        if ($name) { $query .= ' name = ?,'; $data[] = $name; }
+        if ($picture && $picture !== '') { $query .= ' picture = ?,'; $data[] = $picture; }
 
         if ($main_pass) {
-            $query .= 'main_pass = ?';
+            $query .= ' main_pass = ?';
 
             $hashedPassword = password_hash($main_pass, PASSWORD_DEFAULT);
             $data[] = $hashedPassword;
         }
 
-        $query .= 'WHERE id = ?';
+        $query .= ' WHERE id = ?';
         $data[] = $id;
 
         $result = Connect::execute($query, $data);
 
-        if ($result['action'] === 'UPDATE') return [ 'sucess' => true ];
-        return [ 'sucess' => false, 'message' => 'update failed' ]; 
+        if ($result['action'] === 'UPDATE') return [ 'success' => true ];
+        return [ 'success' => false, 'message' => 'update failed' ]; 
     }
-
+  
     public static function login($email, $main_pass) {
         if (!$email || !$main_pass)
         return [ 'message' => 'email and main_pass are required!' ];
@@ -123,16 +132,16 @@ class User
         $results = Connect::execute($query, [$email])['data'];
         $userNotFound = count($results) === 0;
 
-        if ($userNotFound) return [ 'sucess' => false, 'message' => 'invalid attempt' ];
+        if ($userNotFound) return [ 'success' => false, 'message' => 'invalid attempt' ];
         
         $user = $results[0];
 
         $passwordIsValid = password_verify($main_pass, $user['main_pass']);
 
-        if (!$passwordIsValid) return [ 'sucess' => false, 'message' => 'invalid attempt' ];
+        if (!$passwordIsValid) return [ 'success' => false, 'message' => 'invalid attempt' ];
 
         $token = new JWTToken([ 'id' => $user['id'], 'email' => $user['email'] ]);
-        return [ 'sucess' => true, 'token' => $token->getToken() ];
+        return [ 'success' => true, 'token' => $token->getToken() ];
     }
 
     // Getters & Setters
