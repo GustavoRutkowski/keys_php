@@ -1,0 +1,89 @@
+// w = 5,4cm
+// h = 8.5cm
+
+@use '../setup/all' as *;
+@use '../components/scrollbar';
+
+main {
+    section.panel-selected__cards {
+        overflow-y: auto;
+        padding: 6rem 3rem;
+        width: calc(100dvw - (100dvw / 6));
+        max-height: 100%;
+        @include flex-column($gap: 2rem);
+        
+        h2 {
+            margin: auto auto 2rem;
+            border-bottom: 2px solid #ccc;
+            width: fit-content;
+            text-align: center;
+            font-size: $subtitles-font-size;
+            color: #ccc;
+            display: block;
+        }
+        
+        ul.cards-list {
+            margin: 0 4rem;
+            padding: 1rem 0;
+            overflow-x: auto;
+            @include flex-row($justify: start, $gap: 1rem);
+    
+            li.card {
+                section.item__card {
+                    font-family: Arial, Helvetica, sans-serif;
+                    width: 5.4cm;
+                    height: 8.5cm;
+                    border-radius: 2mm;
+                    background-color: $primary-color;
+                    box-shadow: $default-shadow;
+                    cursor: pointer;
+                    transition: all .3s;
+                    overflow: hidden;
+                    @include flex-column($justify: end);
+
+                    &:hover { opacity: .6 }
+
+                    &.add-card {
+                        padding: 0;
+                
+                        button.add-card-btn {
+                            margin: auto;
+                            font-size: 15rem;
+                            color: rgba(#fff,.5);
+                            cursor: pointer;
+                            @include flexbox(row, center, center);
+
+                            &:hover { color: white }
+                        }
+                    }
+
+                    * { max-width: max-content }
+
+                    .brand {
+                        margin: 1rem 1rem auto 1rem;
+                        max-width: 50%;
+                    }
+
+                    .card-data-container {
+                        margin: 1rem;
+                        font-size: 1.25rem;
+
+                        span {
+                            font-weight: 600;
+                        }
+
+                        .masked_number {
+                            color: #ddd
+                        }
+
+                        @include flex-column();
+                    }
+
+                    .issuer_bank {
+                        max-width: 50%;
+                    }   
+                }
+            }
+        }
+    }
+}

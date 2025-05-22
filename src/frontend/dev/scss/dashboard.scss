@@ -1,4 +1,4 @@
-@use "setup/all";
+@use "setup/all" as *;
 @use "components/dashboard-content";
 @use "components/header";
 @use "components/mobile-nav";
@@ -6,3 +6,4 @@
 @use "components/passwords";
 @use "components/scrollbar";
 @use "components/panels-bar";
+@use "panels/all" as *;
