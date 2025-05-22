@@ -41,11 +41,12 @@ main {
                     overflow: hidden;
                     @include flex-column($justify: end);
 
-                    &:hover { opacity: .6 }
+                    &:hover { transform: translateX(-1rem) }
 
                     &.add-card {
                         padding: 0;
-                
+                        &:hover { transform: none }
+
                         button.add-card-btn {
                             margin: auto;
                             font-size: 15rem;
