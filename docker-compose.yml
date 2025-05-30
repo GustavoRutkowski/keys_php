@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  php-apache:
+    build:
+      context: .
+      dockerfile: Dockerfile-php
+    ports:
+      - "${API_PORT}:80"
+    volumes:
+      - .:/var/www/html  # Alterado para mapear a raiz do projeto
+      - ./src/.env:/var/www/html/.env
+    environment:
+      - APACHE_PORT=80
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - "${MYSQL_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./backend/db/db.sql:/docker-entrypoint-initdb.d/db.sql
+    networks:
+      - app-network
+
+  node-app:
+    image: node:latest
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    working_dir: /usr/src/app
+    environment:
+      - START_MODE=${START_MODE}
+    command: >
+      sh -c "npm install && 
+      (if [ \"$$START_MODE\" = \"DEV\" ]; then npm run start-dev; else npm run start; fi)"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
