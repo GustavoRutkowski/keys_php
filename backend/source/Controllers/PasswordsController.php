@@ -2,6 +2,7 @@
 
 namespace Source\Controllers;
 
+use Exception;
 use Source\Models\Password;
 
 class PasswordsController extends Controller {
@@ -11,17 +12,61 @@ class PasswordsController extends Controller {
         $headers = $this->getRequestData($data)['headers'];
         $body = $this->getRequestData($data)['body'];
 
-        $token = $headers['token'] ?? null;
+        if (!array_key_exists('value', $body) || $body["value"] === "") {
+            $response = [
+                'status' => 400,
+                'success' => false,
+                'message'=> 'value is required'
+            ];
+
+            return $this::send($response['status'], $response);
+        }
+
+        if (!array_key_exists('software_id', $body)) {
+            $response = [
+                'status' => 400,
+                'success' => false,
+                'message'=> 'software_id is required'
+            ];
+
+            return $this::send($response['status'], $response);
+        }
+
+        if (!array_key_exists('token', $headers) || $headers['token'] === "") {
+            $response = [
+                'status'=> 400,
+                'success'=> false,
+                'message'=> 'token not provided'
+            ];
+
+            return $this::send($response['status'], $response);
+        }
+
+        $token = $headers['token'];
+
         $value = $body['value'] ?? null;
         $software_id = $body['software_id'] ?? null;
 
-        $created = Password::create($token, $value, $software_id);
+        try {
+            $created = Password::create($token, $value, $software_id);
 
-        if ($created['success'] === false) {
-            return $this::send(400, $created);
+            $response = [
+                'status' => 201,
+                'success' => true,
+                'message' => 'password created successfully',
+                'data' => $created
+            ];
+
+            return $this::send($response['status'], $response);
+        } catch (Exception $e) {
+            $response = [
+                'status'=> 400,
+                'success'=> false,
+                'message'=> $e->getMessage()
+            ];
+
+            return $this::send($response['status'], $response);
         }
-
-        return $this::send(201, $created);
     }
 
     // GET /password

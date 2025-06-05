@@ -4,6 +4,7 @@ namespace Source\Models;
 
 use Source\Utils\Connect;
 use Source\Utils\JWTToken;
+use Exception;
 
 class User
 {
@@ -32,14 +33,12 @@ class User
 
     // CRUD:
     public static function create($name, $email, $main_pass) {
-        if (!$name || !$email || !$main_pass) {
-            return [ 'message' => 'name, email and main_pass are required!' ];
-        }
+        if (!$name || !$email || !$main_pass) throw new Exception('you left required fields blank');
 
         $countQuery = 'SELECT COUNT(*) AS count FROM users WHERE email = ?';
         $firstRow = Connect::execute($countQuery, [$email])['data'][0];
 
-        if ($firstRow['count'] > 0) return [ 'message' => 'email already exists' ];
+        if ($firstRow['count'] > 0) throw new Exception('email already exists');
 
         $query = 'INSERT INTO users (name, email, main_pass) VALUES (?, ?, ?)';
         $hashedPassword = password_hash($main_pass, PASSWORD_DEFAULT);
@@ -51,97 +50,106 @@ class User
     public static function getByToken(string $token) {
         $jwt = JWTToken::from($token);
 
-        if ($jwt !== null) {
-            $res = JWTToken::verify($jwt);
-            
-            if ($res['valid']) {
-                $id = $res['decoded_token']->id;
-                return User::getById($id);
-            }
+        if ($jwt === null) throw new Exception('invalid or malformed token');
+        
+        $res = JWTToken::verify($jwt);
+        
+        if ($res['valid'] === false) throw new Exception($res['message']);
+        
+        $id = $res['decoded_token']->id;
 
-            return [ 'message' => $res['message'] ];
+        try {
+            return User::getById($id);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
-
-        return [ 'message' => 'Invalid or malformed token' ];
     }
 
 
     public static function getById(int $id) {
-        if (!$id) {
-            return [ 'message' => 'id is required!' ];
-        }
+        if (!$id) throw new Exception('id is required!');
 
         $query = 'SELECT id, name, email, picture FROM users WHERE id = ?';
-
         $results = Connect::execute($query, [ $id ])['data'];
 
-        if (count($results) === 0) {
-            return [ 'message' => 'user not found' ];
-        }
+        if (count($results) === 0) throw new Exception('user not found');
 
         $user = $results[0];
         return $user;
     }
 
-    public static function update(string $token, ?string $name, ?string $main_pass, ?string $picture) {
-        if (!$token) return [ 'success' => false, 'message' => 'token is required!' ];
-        
+    public static function update(string $token, ?string $name = null, ?string $main_pass = null, ?string $picture = null) {
+        if (!$token) throw new Exception('token is required!');
+
         $id = null;
 
         $jwt = JWTToken::from($token);
 
-        if ($jwt === null) return [ 'success' => false, 'message' => 'expired or invalid token!' ];
+        if ($jwt === null) throw new Exception('expired or invalid token!');
 
         $res = JWTToken::verify($jwt);
 
-        if (!$res['valid']) return [ 'success' => false, 'message' => 'expired or invalid token!' ];
+        if (!$res['valid']) throw new Exception('expired or invalid token!');
         
         $id = $res['decoded_token']->id;
         
-        if (!$name && !$main_pass && !$picture)
-        return [ 'success' => false, 'message' => 'to update, you must pass at least one argument' ];
+        if (!$name && !$main_pass && !$picture) throw new Exception('to update, you must pass at least one argument');
 
         $query = 'UPDATE users SET';
         $data = [];
 
-        if ($name) { $query .= ' name = ?,'; $data[] = $name; }
-        if ($picture && $picture !== '') { $query .= ' picture = ?,'; $data[] = $picture; }
+        $queryFields = [];
 
-        if ($main_pass) {
-            $query .= ' main_pass = ?';
+        if ($name !== null) { $queryFields[] = ' name = ?'; $data[] = $name; }
+        if ($picture !== null && $picture !== '') { $queryFields[] = ' picture = ?'; $data[] = $picture; }
+
+        if ($main_pass !== null) {
+            $queryFields[] = ' main_pass = ?';
 
             $hashedPassword = password_hash($main_pass, PASSWORD_DEFAULT);
             $data[] = $hashedPassword;
         }
 
+        $query .= implode(',', $queryFields);
         $query .= ' WHERE id = ?';
+
         $data[] = $id;
+
+        var_dump($query);
 
         $result = Connect::execute($query, $data);
 
-        if ($result['action'] === 'UPDATE') return [ 'success' => true ];
-        return [ 'success' => false, 'message' => 'update failed' ]; 
+        // var_dump($result['action']);
+
+        if ($result['action'] !== 'UPDATE') throw new Exception('update failed');
+        return [ 'success' => true ];
     }
   
     public static function login($email, $main_pass) {
-        if (!$email || !$main_pass)
-        return [ 'message' => 'email and main_pass are required!' ];
+        if (!$email || !$main_pass) throw new Exception('you left required fields blank');
 
-        $query = 'SELECT * FROM users WHERE email = ?';
+        $query = 'SELECT id, name, email, main_pass FROM users WHERE email = ?';
         
         $results = Connect::execute($query, [$email])['data'];
         $userNotFound = count($results) === 0;
 
-        if ($userNotFound) return [ 'success' => false, 'message' => 'invalid attempt' ];
+        if ($userNotFound) throw new Exception('invalid attempt');
         
         $user = $results[0];
 
         $passwordIsValid = password_verify($main_pass, $user['main_pass']);
 
-        if (!$passwordIsValid) return [ 'success' => false, 'message' => 'invalid attempt' ];
+        if (!$passwordIsValid) throw new Exception('invalid attempt');
 
-        $token = new JWTToken([ 'id' => $user['id'], 'email' => $user['email'] ]);
-        return [ 'success' => true, 'token' => $token->getToken() ];
+        $token = new JWTToken($user);
+        return [
+            'token' => $token->getToken(),
+            'user' => [
+                'id' => $user['id'],
+                'name' => $user['name'],
+                'email' => $user['email']
+            ]
+        ];
     }
 
     // Getters & Setters

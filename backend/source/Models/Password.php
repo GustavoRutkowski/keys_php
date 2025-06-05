@@ -2,6 +2,7 @@
 
 namespace Source\Models;
 
+use Exception;
 use Source\Utils\Connect;
 use Source\Utils\JWTToken;
 
@@ -32,13 +33,11 @@ class Password
     {
         $jwt = JWTToken::from($token);
         
-        if ($jwt === null) {
-            return [ 'success' => false, 'message' => 'invalid or expired token' ];
-        }
+        if ($jwt === null) throw new Exception('invalid or expired token');
 
         $res = JWTToken::verify($jwt);
 
-        if (!$res['valid']) return [ 'success' => false, 'message' => 'invalid or expired token' ];
+        if (!$res['valid']) throw new Exception('invalid or expired token');
 
         $user_id = $res['decoded_token']->id;
 
@@ -47,11 +46,10 @@ class Password
 
         // var_dump($result);
 
-        if (array_key_exists("insertId", $result)) {
-            return [ 'success' => true, 'insertId' => $result['insertId'] ];
-        }
-
-        return ['success' => false, 'message' => 'password not created'];
+        if (array_key_exists("insertId", $result) === false)
+            throw new Exception('password not created');
+        
+        return [ 'insertId' => $result['insertId'] ];
     }
 
     // Buscar todas as senhas do usuário
@@ -59,15 +57,11 @@ class Password
     {
         $jwt = JWTToken::from($token);
         
-        if ($jwt === null) {
-            return [ 'success' => false, 'message' => 'invalid or expired token' ];
-        }
+        if ($jwt === null) throw new Exception('invalid or expired token');
 
         $res = JWTToken::verify($jwt);
 
-        if (!$res['valid']) {
-            return [ 'success' => false, 'message' => 'invalid or expired token' ];
-        }
+        if (!$res['valid']) throw new Exception('invalid or expired token');
 
         $user_id = $res['decoded_token']->id;
 
@@ -83,13 +77,11 @@ class Password
     {
         $jwt = JWTToken::from($token);
         
-        if ($jwt === null) {
-            return [ 'success' => false, 'message' => 'invalid or expired token' ];
-        }
+        if ($jwt === null) throw new Exception('invalid or expired token');
 
         $res = JWTToken::verify($jwt);
 
-        if (!$res['valid']) return [ 'success' => false, 'message' => 'invalid or expired token' ];
+        if (!$res['valid']) throw new Exception('invalid or expired token');
 
         $user_id = $res['decoded_token']->id;
 
@@ -106,13 +98,11 @@ class Password
     {
         $jwt = JWTToken::from($token);
         
-        if ($jwt === null) {
-            return [ 'success' => false, 'message' => 'invalid or expired token' ];
-        }
+        if ($jwt === null) throw new Exception('invalid or expired token');
 
         $res = JWTToken::verify($jwt);
 
-        if (!$res['valid']) return [ 'success' => false, 'message' => 'invalid or expired token' ];
+        if (!$res['valid']) throw new Exception('invalid or expired token');
 
         $user_id = $res['decoded_token']->id;
 
@@ -122,19 +112,18 @@ class Password
         if ($value !== null) { $fields[] = 'value = ?'; $params[] = $value; }
         if ($software_id !== null) { $fields[] = 'software_id = ?'; $params[] = $software_id; }
 
-        if (empty($fields)) return [ 'success' => false, 'message' => 'no data to update' ];
+        if (empty($fields)) throw new Exception('no data to update');
 
         $params[] = $id;
         $params[] = $user_id;
 
-        $query = "UPDATE passwords SET " . implode(', ', $fields) . " WHERE id = ? AND user_id = ?";
+        $query = "UPDATE passwords SET " . join(',', $fields) . " WHERE id = ? AND user_id = ?";
         $result = Connect::execute($query, $params);
 
-        if (isset($result['action']) && $result['action'] === 'UPDATE') {
-            return [ 'success' => true ];
-        }
-
-        return [ 'success' => false, 'message' => 'update failed' ];
+        if (isset($result['action']) === false || $result['action'] !== 'UPDATE')
+            throw new Exception('update failed');
+        
+        return [ 'success' => true ];
     }
 
     // Deletar senha
@@ -142,26 +131,21 @@ class Password
     {
         $jwt = JWTToken::from($token);
         
-        if ($jwt === null) {
-            return [ 'success' => false, 'message' => 'invalid or expired token' ];
-        }
+        if ($jwt === null) throw new Exception('invalid or expired token');
 
         $res = JWTToken::verify($jwt);
 
-        if (!$res['valid']) {
-            return [ 'success' => false, 'message' => 'invalid or expired token' ];
-        }
+        if (!$res['valid']) throw new Exception('invalid or expired token');
 
         $user_id = $res['decoded_token']->id;
 
         $query = "DELETE FROM passwords WHERE id = ? AND user_id = ?";
-        $result = Connect::execute($query, [$id, $user_id]);
+        $result = Connect::execute($query, [ $id, $user_id ]);
 
-        if (isset($result['affectedRows']) && $result['affectedRows'] > 0) {
-            return [ 'success' => true ];
-        }
-
-        return [ 'success' => false, 'message' => 'password not found or not owned by user' ];
+        if (isset($result['affectedRows']) === false || $result['affectedRows'] <= 0)
+            throw new Exception('password not found or not owned by user');
+        
+        return [ $result ];
     }
 
 

@@ -77,15 +77,15 @@ class JWTToken
             ) {
                 return [
                     'valid' => false,
-                    'message' => 'token expired or invalid',
-                    'decoded_token' => null
+                    'decoded_token' => null,
+                    'message' => 'token expired or invalid'
                 ];
             }
 
             return [
                 'valid' => true,
                 'decoded_token' => $decoded->data,
-                'message' => null
+                'message' => 'token decoded successfully'
             ];
         } catch (Exception $e) {
             return [

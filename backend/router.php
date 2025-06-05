@@ -28,7 +28,7 @@ $route->namespace("Source\Controllers");
 $route->group("/users");
     $route->post('/', 'UsersController:createUser');
 
-    $route->get('/{id}', 'UsersController:getUserByID');
+    $route->get('/id/{id}', 'UsersController:getUserByID');
     $route->get('/user', 'UsersController:getUser');
 
     $route->put('/user', 'UsersController:updateUser');
@@ -37,14 +37,14 @@ $route->group("/users");
 $route->group("null");
 
 $route->group("/passwords");
-    $route->post("/create", "PasswordsController:createPassword");
+    $route->post("/", "PasswordsController:createPassword");
     
     $route->get("/all", "PasswordsController:getAllPasswords"); 
     $route->get("/id/{id}", "PasswordsController:getPasswordById");
 
-    $route->put("/update/{id}", "PasswordsController:updatePassword"); 
+    $route->put("/id/{id}", "PasswordsController:updatePassword"); 
 
-    $route->delete("/delete/{id}", "PasswordsController:deletePassword");
+    $route->delete("/id/{id}", "PasswordsController:deletePassword");
 $route->group("null");
 
 $route->group("/softwares");
@@ -66,8 +66,7 @@ if ($route->error()) {
     http_response_code(404);
 
     echo json_encode([
-        "code" => 404,
-        "status" => "not_found",
+        "status" => 404,
         "message" => "URL não encontrada"
     ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 }
