@@ -31,6 +31,10 @@ app.get('/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'view', 'dashboard.html'));
 });
 
+app.get('/admin-panel', (req, res) => {
+    res.sendFile(path.join(__dirname, 'view', 'admin-panel.html'));
+});
+
 const PORT = process.env.SERVER_PORT || 5500;
 
 app.listen(PORT, () => console.warn(`Server running in port ${PORT}...`));

@@ -1,4 +1,11 @@
 import LoaderMenu from "./components/LoaderMenu";
+import LocalData from "./utils/LocalData";
+import setupHeader from "./utils/setupHeader";
+
+setupHeader(
+    LocalData.get('token') as string,
+    document.querySelector('ul.header-navigator__links-list') as HTMLElement
+);
 
 customElements.define('loader-menu', LoaderMenu);
 
@@ -13,15 +20,15 @@ loaderMenu.setup({
     items: [
         {
             id: 'passwords', label: 'Senhas',
-            path: '../../public/panels/_passwords.html', action: () => console.log('a')
+            path: '../../public/panels/app/_passwords.html', action: () => console.log('a')
         },
         {
             id: 'cards', label: 'Cartões',
-            path: '../../public/panels/_cards.html', action: () => console.log('b')
+            path: '../../public/panels/app/_cards.html', action: () => console.log('b')
         },
         {
             id: 'documents', label: 'Documentos Digitalizados',
-            path: '../../public/panels/_documents.html', action: () => console.log('c')
+            path: '../../public/panels/app/_documents.html', action: () => console.log('c')
         }
     ]
 });

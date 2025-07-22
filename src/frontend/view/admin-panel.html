@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gerenciador de senhas para uso pessoal e que não rouba seus dados :)">
+
+    <link rel="stylesheet" href="../public/css/admin-panel.min.css">
+    <script src="../public/js/dashboard.min.js" defer></script>
+
+    <link rel="shortcut icon" href="../public/icons/key-icon.png" type="image/x-icon">
+    <title>KeysPHP - Dashboard</title>
+</head>
+<body>
+    <!-- Criar um componente com o header já feito -->
+    <!-- Adicionar uma lista de links no header -->
+        <!-- INÍCIO (index), PAINÉL (dashboard) -->
+    <header>
+        <h1>🔑 Keys</h1>
+
+        <nav id="header-navigator">
+            <ul class="header-navigator__links-list">
+                <li class="links-list__item"><a href="/">Início</a></li>
+                <li class="links-list__item"><a href="/faq">Suporte</a></li>
+                <li class="links-list__item"><a href="/dashboard">Painél de Controle</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Painél do Administrador</h2>
+
+        <section class="infos-section">
+            <div class="infos-section__dashboard-card">
+                <p class="total-users">Total de Usuários: <span id="users-count">9999</span></p>
+            </div>
+            
+            <div class="infos-section__dashboard-card">
+                <p class="active-users">Usuários Ativos: <span id="active-users-count">2</span></p>
+            </div>
+            
+            <div class="infos-section__dashboard-card">
+                <p class="monthly-growth">Taxa de Crescimento de Usuários no Mês: <span id="monthly-growth-percent">110%</span></p>
+            </div>
+        </section>
+        
+        <h2>Logs</h2>
+
+        <section class="logs-section">
+            <div class="logs-section__logs-list">
+                <ol class="logs-list__logs-list">
+                    <li class="logs-list__log"><span class="datetime">[22/07/2025 - 14:02]</span> User "Gustavo Rutkowski" logged in</li>
+                    <li class="logs-list__log"><span class="datetime">[22/07/2025 - 14:02]</span> User "Felipi Haag" logged in</li>
+                    <li class="logs-list__log"><span class="datetime">[22/07/2025 - 14:02]</span> User "Felipi Haag" logged in</li>
+                    <li class="logs-list__log"><span class="datetime">[22/07/2025 - 14:02]</span> User "Felipi Haag" logged in</li>
+                </ol>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

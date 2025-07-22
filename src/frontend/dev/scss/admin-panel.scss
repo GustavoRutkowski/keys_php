@@ -1,0 +1,53 @@
+@use "setup/all" as *;
+@use "components/header";
+@use "components/scrollbar";
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    h2 {
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .infos-section {
+        display: flex;
+        flex-wrap: wrap;
+        width: 70%;
+        gap: 5rem;
+
+        .infos-section__dashboard-card {
+            width: 45%;
+            font-size: 30px;
+            border-radius: 5px;
+
+            p {
+                color: rgb(175, 255, 175);
+            }
+
+            p > span {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .infos-section, .logs-section {
+        margin: 5rem;
+        width: 70%;
+    }
+
+    .logs-section {
+        font-size: 15px;
+        .datetime { color: #2b87d3 }
+    }
+
+    .infos-section__dashboard-card,
+    .logs-section {
+        background-color: $primary-color;
+        padding: 3rem;
+        box-shadow: $default-shadow;
+    }
+}
+

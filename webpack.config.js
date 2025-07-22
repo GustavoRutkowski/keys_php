@@ -14,6 +14,7 @@ const tsConfig = {
         dashboard: `${tsRoot}/dashboard.ts`,
         login: `${tsRoot}/login.ts`,
         register: `${tsRoot}/register.ts`,
+        index: `${tsRoot}/index.ts`
     },
 
     output: {
