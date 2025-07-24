@@ -40,16 +40,16 @@ class Api {
         return data;
     }
 
-    public async post(route: string, body: object) {
+    public async post(route: string, body: object = {}) {
         return await this.request('POST', route, body);
     }
-    public async get(route: string, params: object) {
+    public async get(route: string, params: object = {}) {
         return await this.request('GET', route, params);
     }
-    public async put(route: string, body: object) {
+    public async put(route: string, body: object = {}) {
         return await this.request('PUT', route, body);
     }
-    public async delete(route: string, params: object) {
+    public async delete(route: string, params: object = {}) {
         return await this.request('DELETE', route, params);
     }
 }

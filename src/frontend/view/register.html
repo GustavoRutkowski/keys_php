@@ -24,6 +24,14 @@
             
             <form id="register-form" class="sign-up-box__form">
                 <fieldset class="form__form-field">
+                    <label for="name-input">Nome</label>
+
+                    <div class="form-field__pass-container">
+                        <input name="name" class="form-field__input" id="name-input" type="text" placeholder="Digite seu nome">
+                    </div>
+                </fieldset>
+                
+                <fieldset class="form__form-field">
                     <label for="email-input">Email</label>
 
                     <input name="email" class="form-field__input" id="email-input" type="email" placeholder="example@foo.bar" autocomplete="email">
@@ -36,16 +44,6 @@
                         <input name="main_pass" class="form-field__input" id="pass-input" type="password" placeholder="Digite sua senha" autocomplete="new-password">
                         
                         <toggle-view-button for="pass-input" tabindex="0"></toggle-view-button>
-                    </div>
-                </fieldset>
-
-                <fieldset class="form__form-field">
-                    <label for="repeat-pass-input">Confirme a senha de acesso</label>
-
-                    <div class="form-field__pass-container">
-                        <input name="repeat_main_pass" class="form-field__input" id="repeat-pass-input" type="password" placeholder="Digite sua senha novamente" autocomplete="new-password">
-                        
-                        <toggle-view-button for="repeat-pass-input" tabindex="0"></toggle-view-button>
                     </div>
                 </fieldset>
                 
